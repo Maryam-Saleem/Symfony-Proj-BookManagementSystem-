@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/stylesheet.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jsScripts.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+  <div class="Page">
+      <div class="userPage">
+          <h1 >{{ message }}</h1>
+          <div class="UserPageButtons">
+              <row>
+                  <button class="Button" onclick="showAvailableBooksToBuy()">Buy Books</button>
+                  <button class="Button" onclick="showOldOrdersOfSpecificUser()">Old Orders</button>
+                  <a href="" class="Button">Refresh</a>
+              </row>
+      </div>
+
+          <div class="ajaxContainer" id="outPut">
+
+          </div>
+          </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}BookShop{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/stylesheet.css') }}">
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ importmap() }}
+        {% endblock %}
+    </head>
+    <nav class="nav">
+        <a  href="{{ path('app_Home_Page') }}">Home</a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_admin') }}">Admin</a>
+        {% elseif is_granted('ROLE_USER')%}
+            <a href="{{ path('app_user') }}">User</a>
+        {% endif %}
+        <div class="navRight">
+        {% if is_granted('ROLE_USER')!='true'%}
+                <a  href="{{ path('app_LogIn') }}">LogIn</a>
+            <div class="dropdown">
+                <button class="dropbtn">SignUp
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="{{ path('app_register_admin') }}">As Admin</a>
+                    <a href="{{ path('app_register_user') }}">As User</a>
+                </div>
+            </div>
+            {% else %}
+                <a href="{{ path('app_LogOut') }}" >LogOut</a>
+                <a href="{{ path('app_profile') }}" class="navProfile">Profile</a>
+            {% endif %}
+        </div>
+
+    </nav>
+    <body>
+    <br>
+        <div class="PageBody">
+            {% block body %}
+
+            {% endblock %}</div>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+ {% block stylesheets %}
+     <link rel="stylesheet" type="text/css" href="{{ asset('css/stylesheet.css') }}">
+ {% endblock %}
+{% block body %}
+    <div class="Page">
+        <div class="logInPage">
+            <form method="POST" id="form">
+                <h1>LogIn</h1>
+                {% if error %}
+                    <div class="DangerAlertErrorInAuth">{{error.message|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <div class="FormFields">
+                    <label>Enter Email:<br> <input type="email" name="email"></label><br>
+                    <label>Enter Password:<br><input type="password" name="password"><br></label>
+                </div>
+                    <label><input type="checkbox" name="_remember_me">Remember Me<br><br></label>
+                <div class="submitButton">
+                    <input type="submit" value="LogIn">
+                </div>
+
+
+
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

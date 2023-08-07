@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/stylesheet.css') }}">
+{% endblock %}
+{% block body %}
+  <div class="Page">
+      <div class="homePage">
+          <img alt=" Image" class="homePageImage" src="{{ asset('../images/bookshop.jpg') }}" >
+          <div class="PageHeading">
+              <h1 >{{ message }}</h1>
+          </div>
+          <div class="homePageContent">
+              {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                  <h6>
+                      {% if is_granted("ROLE_ADMIN") %}
+                          <h5>Hi! {{ app.user.firstname }}, You are logged in as an Admin.</h5>
+                          <h6>Enjoy you journey as an admin. You can add,delete,edit,read books</h6>
+                      {% else %}
+                          <h5>Hi! {{ app.user.firstname }}, You are logged in as User.</h5>
+                          <h6>Enjoy you journey as a user. You can order amazing books.</h6>
+                      {% endif %}
+
+                  </h6>
+
+              {% endif %}
+          </div>
+      </div>
+  </div>
+{% endblock %}
